@@ -3,76 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT NODE | Advanced Privacy Infrastructure</title>
+    <title>IT NODE | Enterprise Privacy Infrastructure</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
         
         :root {
             --cyan: #22d3ee;
             --blue: #3b82f6;
             --dark: #020617;
-            --card-bg: rgba(15, 23, 42, 0.75);
+            --card-bg: rgba(15, 23, 42, 0.6);
         }
 
         body {
             background-color: var(--dark);
             color: #f8fafc;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
         }
 
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* Animated Grid Background */
+        /* Advanced Mesh Gradient Background */
+        .mesh-bg {
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 0% 0%, rgba(34, 211, 238, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+            z-index: -2;
+        }
+
         .grid-bg {
             position: fixed;
             inset: 0;
-            background-image: 
-                linear-gradient(to right, rgba(34, 211, 238, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
+            background-image: linear-gradient(rgba(34, 211, 238, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 211, 238, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
             z-index: -1;
-            mask-image: radial-gradient(circle at 50% 50%, black, transparent 90%);
+            mask-image: radial-gradient(circle at center, black, transparent 80%);
         }
 
         .glass-card {
             background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         .glass-card:hover {
-            border-color: var(--cyan);
-            box-shadow: 0 0 40px rgba(34, 211, 238, 0.1);
+            border-color: rgba(34, 211, 238, 0.3);
+            background: rgba(15, 23, 42, 0.8);
+            transform: translateY(-5px);
         }
 
         .text-gradient {
-            background: linear-gradient(135deg, #fff 40%, var(--cyan) 100%);
+            background: linear-gradient(135deg, #fff 30%, var(--cyan) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        /* Pulsing Glow */
-        .glow-point {
-            box-shadow: 0 0 15px var(--cyan);
-            animation: pulse-glow 2s infinite;
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-        }
-
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
         }
 
         /* Speed Dial Animation */
@@ -86,203 +74,229 @@
             to { stroke-dashoffset: 0; }
         }
 
-        /* Custom Scroll */
-        ::-webkit-scrollbar { width: 4px; }
+        .floating { animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.02); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: var(--dark); }
-        ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
+
+        .node-stat-bar {
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .node-stat-fill {
+            height: 100%;
+            background: var(--cyan);
+            box-shadow: 0 0 10px var(--cyan);
+            transition: width 1s ease-in-out;
+        }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased selection:bg-cyan-500/30">
 
+    <div class="mesh-bg"></div>
     <div class="grid-bg"></div>
 
-    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-cyan-500/10 blur-[120px] pointer-events-none"></div>
-
-    <nav class="sticky top-0 z-[100] backdrop-blur-xl border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 bg-cyan-500 rounded flex items-center justify-center shadow-[0_0_15px_rgba(34,211,238,0.4)]">
-                    <i class="fas fa-shield-halved text-black text-sm"></i>
+    <nav class="sticky top-0 z-[100] backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-4 group cursor-pointer">
+                <div class="w-10 h-10 bg-cyan-500 rounded-xl flex items-center justify-center transition-all duration-500 group-hover:rotate-[360deg] shadow-[0_0_20px_rgba(34,211,238,0.4)]">
+                    <i class="fas fa-terminal text-black text-lg"></i>
                 </div>
-                <span class="text-lg font-bold tracking-tighter mono">IT_NODE<span class="text-cyan-500">.sys</span></span>
+                <span class="text-xl font-extrabold tracking-tighter mono">IT_NODE<span class="text-cyan-400">.io</span></span>
             </div>
             
-            <div class="hidden md:flex items-center gap-8 text-[11px] uppercase tracking-widest font-bold text-gray-400">
-                <a href="#features" class="hover:text-cyan-400 transition">Infrastructure</a>
-                <a href="#stats" class="hover:text-cyan-400 transition">Nodes</a>
-                <a href="#faq" class="hover:text-cyan-400 transition">Assistance</a>
-                <a href="https://t.me/it_node_secure_bot" class="bg-white text-black px-4 py-2 rounded hover:bg-cyan-500 transition-colors">Connect</a>
+            <div class="hidden lg:flex gap-10 items-center">
+                <div class="flex gap-8 text-[11px] uppercase tracking-[0.2em] font-bold text-gray-400">
+                    <a href="#infra" class="hover:text-cyan-400 transition">Infrastructure</a>
+                    <a href="#nodes" class="hover:text-cyan-400 transition">Network</a>
+                    <a href="#faq" class="hover:text-cyan-400 transition">Legal</a>
+                </div>
+                <a href="https://t.me/it_node_secure_bot" class="px-6 py-2.5 rounded-full bg-white text-black text-[11px] font-black uppercase tracking-widest hover:bg-cyan-400 transition-all active:scale-95">
+                    Connect Now
+                </a>
             </div>
         </div>
     </nav>
 
-    <header class="relative pt-20 pb-32 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
-            <div class="z-10">
-                <div class="mb-6 inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-[10px] mono uppercase">
-                    <span class="w-2 h-2 rounded-full bg-cyan-500 glow-point"></span>
-                    Network Protocol: AES-256-GCM
+    <main class="relative z-10 max-w-7xl mx-auto px-8 pt-20 pb-32">
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-10">
+                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-cyan-500/5 border border-cyan-500/20 text-cyan-400 text-[10px] font-bold uppercase tracking-widest">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                    </span>
+                    Core Version 4.2 Stable
                 </div>
-                <h1 class="text-7xl md:text-8xl font-bold leading-[0.9] tracking-tighter mb-8">
-                    BYPASS <br> <span class="text-gradient">BOUNDARIES</span>
+                
+                <h1 class="text-7xl md:text-8xl font-extrabold leading-[0.85] tracking-tighter">
+                    PRIVACY <br> <span class="text-gradient uppercase">REDEFINED_</span>
                 </h1>
-                <p class="text-gray-400 text-lg md:text-xl max-w-md mb-10 font-light leading-relaxed">
-                    Больше чем просто соединение. Мы создаем цифровую невидимость с использованием <span class="text-white mono">multi-hop</span> архитектуры.
+                
+                <p class="text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed font-light">
+                    Экосистема защищенной передачи данных. Мы используем архитектуру <span class="text-white mono">Reality</span> для полной маскировки трафика под обычный веб-серфинг.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="https://t.me/it_node_secure_bot" class="px-8 py-4 bg-cyan-500 text-black font-bold rounded-xl text-center hover:scale-105 active:scale-95 transition-all shadow-lg shadow-cyan-500/20">
-                        LAUNCH TERMINAL
+                
+                <div class="flex flex-wrap items-center gap-6 pt-6">
+                    <a href="https://t.me/it_node_secure_bot" class="px-10 py-5 rounded-2xl bg-cyan-500 text-black font-black text-sm uppercase tracking-widest shadow-[0_20px_40px_-10px_rgba(34,211,238,0.3)] hover:scale-105 transition-transform">
+                        Launch Node Terminal
                     </a>
-                    <div class="flex items-center gap-4 px-6 py-4 rounded-xl border border-white/10 glass-card">
-                        <div class="flex -space-x-2">
-                            <div class="w-8 h-8 rounded-full border-2 border-slate-900 bg-gray-800 flex items-center justify-center text-[10px]">US</div>
-                            <div class="w-8 h-8 rounded-full border-2 border-slate-900 bg-gray-800 flex items-center justify-center text-[10px]">NL</div>
-                            <div class="w-8 h-8 rounded-full border-2 border-slate-900 bg-gray-800 flex items-center justify-center text-[10px]">DE</div>
-                        </div>
-                        <span class="text-[10px] mono text-gray-500 uppercase">32+ Locations</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="relative">
-                <div class="absolute -inset-4 bg-gradient-to-tr from-cyan-500/20 to-transparent blur-3xl opacity-30"></div>
-                <div class="relative glass-card p-4 rounded-[2.5rem] border-white/10 floating">
-                    <div class="bg-slate-950 rounded-[2rem] overflow-hidden aspect-video flex items-center justify-center border border-white/5">
-                        <div class="text-center">
-                            <i class="fas fa-terminal text-4xl text-cyan-500/20 mb-4"></i>
-                            <div class="mono text-[10px] text-cyan-500/50" id="typewriter"></div>
-                        </div>
-                    </div>
-                    <div class="absolute -right-6 top-1/4 glass-card p-4 rounded-2xl shadow-xl">
-                        <div class="flex flex-col items-center">
-                            <span class="text-[10px] text-gray-500 uppercase mb-1">Latency</span>
-                            <span class="text-xl font-bold text-green-400 italic">14ms</span>
-                            <svg class="w-16 h-8" viewBox="0 0 100 40">
-                                <path d="M0 35 Q 25 10, 50 30 T 100 5" fill="none" stroke="#22d3ee" stroke-width="2" class="speed-line" />
-                            </svg>
+                    <div class="px-6 py-5 rounded-2xl border border-white/10 glass-card flex items-center gap-4">
+                        <div class="text-right">
+                            <div class="text-xs text-gray-500 uppercase mono">Global Status</div>
+                            <div class="text-sm font-bold text-green-400">OPERATIONAL</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
 
-    <section class="max-w-7xl mx-auto px-6 py-20">
-        <div class="glass-card rounded-[3rem] overflow-hidden">
-            <div class="p-8 md:p-16">
-                <div class="flex flex-col lg:flex-row gap-16">
-                    <div class="flex-1">
-                        <h2 class="text-4xl font-bold mb-6 italic italic uppercase tracking-tighter">Security <span class="text-cyan-500">Audit.</span></h2>
-                        <p class="text-gray-400 mb-8 leading-relaxed">Нажмите кнопку для глубокого анализа сетевых уязвимостей вашего текущего провайдера.</p>
-                        
-                        <div class="grid grid-cols-2 gap-4 mb-8">
-                            <div class="p-4 rounded-xl bg-white/5 border border-white/5">
-                                <div class="text-cyan-500 text-lg font-bold mb-1">4096-bit</div>
-                                <div class="text-[9px] uppercase text-gray-500 mono">RSA Encryption</div>
+            <div class="relative group">
+                <div class="absolute inset-0 bg-cyan-500/10 blur-[120px] rounded-full group-hover:bg-cyan-500/20 transition-all"></div>
+                <div class="glass-card p-6 rounded-[2.5rem] border-white/10 floating relative z-10">
+                    <div class="bg-slate-950 rounded-[1.8rem] overflow-hidden aspect-video border border-white/5 p-8">
+                        <div class="flex justify-between items-center mb-8">
+                            <div class="flex gap-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500/20"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/20"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/20"></div>
                             </div>
-                            <div class="p-4 rounded-xl bg-white/5 border border-white/5">
-                                <div class="text-cyan-500 text-lg font-bold mb-1">PFS</div>
-                                <div class="text-[9px] uppercase text-gray-500 mono">Forward Secrecy</div>
-                            </div>
+                            <div class="text-[10px] mono text-gray-500 uppercase tracking-widest">encrypted_tunnel_v2</div>
                         </div>
-
-                        <button onclick="startDeepScan()" id="audit-btn" class="group relative w-full py-5 rounded-2xl bg-white text-black font-black uppercase tracking-widest overflow-hidden transition-all hover:bg-cyan-500">
-                            <span class="relative z-10">[ RUN NETWORK AUDIT ]</span>
-                        </button>
+                        <div class="mono text-[12px] text-cyan-400/80 space-y-2" id="typewriter"></div>
                     </div>
-
-                    <div class="flex-1 bg-black/50 rounded-3xl p-8 border border-white/10 mono text-sm relative">
-                        <div id="scan-line" class="absolute inset-x-0 top-0 h-1 bg-cyan-500/50 blur-sm hidden"></div>
-                        <div class="space-y-4" id="audit-logs">
-                            <div class="flex justify-between border-b border-white/5 pb-2">
-                                <span class="text-gray-500">EXTERNAL_IP:</span>
-                                <span class="text-red-400" id="aud-ip">185.xxx.xxx.xxx</span>
+                    
+                    <div class="absolute -bottom-8 -right-8 glass-card p-6 rounded-3xl shadow-2xl border-white/10">
+                        <div class="flex items-center gap-5">
+                            <div class="relative w-12 h-12">
+                                <svg viewBox="0 0 36 36" class="w-full h-full stroke-cyan-500 fill-none">
+                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-width="2" stroke-dasharray="85, 100" class="speed-line" />
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center text-[10px] font-bold italic">14ms</div>
                             </div>
-                            <div class="flex justify-between border-b border-white/5 pb-2">
-                                <span class="text-gray-500">ISP_DNS:</span>
-                                <span class="text-red-400" id="aud-dns">UNPROTECTED</span>
-                            </div>
-                            <div class="flex justify-between border-b border-white/5 pb-2">
-                                <span class="text-gray-500">TRAFFIC_FINGERPRINT:</span>
-                                <span class="text-yellow-500">VISIBLE</span>
-                            </div>
-                            <div class="mt-8 pt-4">
-                                <div class="text-[10px] text-cyan-500/50 mb-2 uppercase tracking-tighter">System Output:</div>
-                                <div class="text-xs text-gray-400 leading-relaxed" id="output-text">
-                                    > Waiting for user input...
-                                </div>
+                            <div>
+                                <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Network Latency</p>
+                                <p class="text-sm font-black uppercase">Ultra Low-Ping</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </main>
 
-    <section id="faq" class="max-w-4xl mx-auto px-6 py-20">
-        <h2 class="text-3xl font-bold text-center mb-12 mono">COMMON_QUESTIONS</h2>
-        <div class="space-y-4">
-            <details class="glass-card rounded-2xl p-6 group cursor-pointer">
-                <summary class="list-none flex justify-between items-center font-bold uppercase text-sm tracking-wide">
-                    Это легально?
-                    <i class="fas fa-plus text-cyan-500 group-open:rotate-45 transition-transform"></i>
-                </summary>
-                <p class="mt-4 text-gray-400 text-sm leading-relaxed">
-                    Абсолютно. IT NODE предоставляет инструменты для обеспечения кибербезопасности и защиты персональных данных в соответствии с международными стандартами приватности. Мы не поощряем противоправные действия.
-                </p>
-            </details>
-            <details class="glass-card rounded-2xl p-6 group cursor-pointer">
-                <summary class="list-none flex justify-between items-center font-bold uppercase text-sm tracking-wide">
-                    Вы ведете логи?
-                    <i class="fas fa-plus text-cyan-500 group-open:rotate-45 transition-transform"></i>
-                </summary>
-                <p class="mt-4 text-gray-400 text-sm leading-relaxed">
-                    Наша архитектура построена на базе RAM-дисков. Вся информация стирается при перезагрузке ноды. Мы физически не можем хранить данные о вашем трафике.
-                </p>
-            </details>
+    <section id="nodes" class="max-w-7xl mx-auto px-8 py-20">
+        <div class="grid lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-1 space-y-6">
+                <h2 class="text-3xl font-bold tracking-tighter uppercase italic">Network <br><span class="text-cyan-400">Infrasructure.</span></h2>
+                <p class="text-gray-500 text-sm leading-relaxed">Наши ноды расположены в Tier-3 дата-центрах по всему миру, обеспечивая бесперебойный доступ и максимальную скорость.</p>
+                <div class="space-y-4 pt-4">
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-[10px] uppercase font-bold mono">
+                            <span>Netherlands, Amsterdam</span>
+                            <span class="text-cyan-400">92% Load</span>
+                        </div>
+                        <div class="node-stat-bar"><div class="node-stat-fill" style="width: 92%"></div></div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-[10px] uppercase font-bold mono">
+                            <span>Germany, Frankfurt</span>
+                            <span class="text-cyan-400">45% Load</span>
+                        </div>
+                        <div class="node-stat-bar"><div class="node-stat-fill" style="width: 45%"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 glass-card rounded-[3rem] p-12 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 opacity-10">
+                    <i class="fas fa-globe-europe text-[150px]"></i>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 relative z-10">
+                    <div class="space-y-4">
+                        <i class="fas fa-microchip text-2xl text-cyan-500"></i>
+                        <h4 class="font-bold uppercase tracking-widest text-sm">Next-Gen Protocols</h4>
+                        <p class="text-xs text-gray-500 leading-loose">Поддержка VLESS + Reality, Shadowsocks-2022 и TUIC v5 для работы в самых сложных сетях.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <i class="fas fa-bolt text-2xl text-cyan-500"></i>
+                        <h4 class="font-bold uppercase tracking-widest text-sm">10Gbps Uplink</h4>
+                        <p class="text-xs text-gray-500 leading-loose">Выделенные каналы связи без ограничений по трафику и скорости скачивания контента.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <i class="fas fa-shield-virus text-2xl text-cyan-500"></i>
+                        <h4 class="font-bold uppercase tracking-widest text-sm">Zero-Log Policy</h4>
+                        <p class="text-xs text-gray-500 leading-loose">Мы физически не храним данные. Вся работа нод происходит исключительно в RAM.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <i class="fas fa-fingerprint text-2xl text-cyan-500"></i>
+                        <h4 class="font-bold uppercase tracking-widest text-sm">Fingerprint Masking</h4>
+                        <p class="text-xs text-gray-500 leading-loose">Система маскирует TLS-отпечаток устройства под браузер Chrome на Windows.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer class="border-t border-white/5 py-12 bg-black/20">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12">
-            <div class="space-y-4">
-                <div class="text-xl font-bold italic tracking-tighter uppercase">IT NODE <span class="text-cyan-500">v4.2</span></div>
-                <p class="text-[10px] text-gray-500 uppercase leading-loose mono">
-                    Infrastructure for the next generation of digital nomads and privacy enthusiasts. Engineered for resilience.
+    <footer class="border-t border-white/5 py-20 bg-black/40">
+        <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-3 gap-16">
+            <div class="space-y-6">
+                <div class="text-xl font-black italic tracking-tighter uppercase">IT NODE <span class="text-cyan-500">PRO</span></div>
+                <p class="text-[10px] text-gray-500 uppercase leading-loose mono tracking-tight">
+                    Инфраструктура для нового поколения цифровых кочевников. Разработано для устойчивости к блокировкам любой сложности.
                 </p>
             </div>
-            <div class="flex flex-col gap-2">
-                <span class="text-xs font-bold uppercase mb-2 text-white">Security Specs</span>
-                <span class="text-[10px] text-gray-500 mono">● VLESS + Reality</span>
-                <span class="text-[10px] text-gray-500 mono">● ShadowSocks-2022</span>
-                <span class="text-[10px] text-gray-500 mono">● WireGuard Tunnel</span>
+            
+            <div class="grid grid-cols-2 gap-8">
+                <div class="flex flex-col gap-4 text-[10px] uppercase font-bold tracking-widest text-gray-500">
+                    <span class="text-white mb-2">Systems</span>
+                    <a href="#" class="hover:text-cyan-400 transition">Infrastructure</a>
+                    <a href="#" class="hover:text-cyan-400 transition">Security Audit</a>
+                </div>
+                <div class="flex flex-col gap-4 text-[10px] uppercase font-bold tracking-widest text-gray-500">
+                    <span class="text-white mb-2">Policy</span>
+                    <a href="#" class="hover:text-cyan-400 transition">Terms of use</a>
+                    <a href="#" class="hover:text-cyan-400 transition">Privacy</a>
+                </div>
             </div>
-            <div class="text-right">
-                <a href="https://t.me/it_node_secure_bot" class="text-4xl text-white hover:text-cyan-500 transition-all">
-                    <i class="fab fa-telegram-plane"></i>
+
+            <div class="flex flex-col items-end justify-between">
+                <a href="https://t.me/it_node_secure_bot" class="text-4xl text-white hover:text-cyan-500 transition-colors">
+                    <i class="fab fa-telegram"></i>
                 </a>
-                <div class="mt-4 text-[9px] text-gray-600 uppercase mono">
-                    © 2024 IT_NODE_SYSTEMS. <br> 
-                    All Rights Reserved.
+                <div class="text-right text-[9px] text-gray-600 mono uppercase">
+                    Build: 0428-2026-STABLE <br>
+                    Handcrafted for Privacy
                 </div>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-white/5">
-            <p class="text-[8px] text-gray-700 uppercase tracking-widest text-center leading-relaxed">
-                Отказ от ответственности: Сервис предназначен для защиты данных и тестирования сетевых подключений. Пользователь несет полную ответственность за соблюдение местного законодательства при использовании инструментов анонимизации.
+        
+        <div class="max-w-7xl mx-auto px-8 mt-20 pt-8 border-t border-white/5">
+            <p class="text-[8px] text-gray-700 uppercase tracking-[0.3em] text-center leading-relaxed">
+                Отказ от ответственности: IT NODE предоставляет инструменты для защиты персональных данных. Мы не поощряем использование сервиса в целях, нарушающих местное законодательство. Вся ответственность за использование инструментов лежит на конечном пользователе.
             </p>
         </div>
     </footer>
 
     <script>
-        // Эффект печатающейся машинки
+        // Professional Typewriter
         const lines = [
-            "Initializing secure handshake...",
-            "Loading encryption modules...",
-            "Routing via Amsterdam Node-04",
-            "Establishing TLS 1.3 tunnel...",
-            "Status: System Optimal"
+            "> Initializing system core...",
+            "> Loading VLESS-Reality modules",
+            "> Connecting to NL_AMS_04...",
+            "> Handshake established [TLS 1.3]",
+            "> Security level: ENCRYPTED",
+            "> Status: System Operational"
         ];
+        
         let lineIdx = 0;
         let charIdx = 0;
         const target = document.getElementById('typewriter');
@@ -292,72 +306,31 @@
                 if (charIdx < lines[lineIdx].length) {
                     target.innerHTML += lines[lineIdx].charAt(charIdx);
                     charIdx++;
-                    setTimeout(type, 50);
+                    setTimeout(type, 30);
                 } else {
                     target.innerHTML += '<br>';
                     charIdx = 0;
                     lineIdx++;
-                    setTimeout(type, 800);
+                    setTimeout(type, 600);
                 }
             }
         }
         window.onload = type;
 
-        // Расширенная симуляция аудита
-        function startDeepScan() {
-            const btn = document.getElementById('audit-btn');
-            const line = document.getElementById('scan-line');
-            const output = document.getElementById('output-text');
-            const ip = document.getElementById('aud-ip');
-            const dns = document.getElementById('aud-dns');
-
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-sync fa-spin"></i> ANALYZING PACKETS...';
-            line.classList.remove('hidden');
-            line.style.animation = 'scan 2s ease-in-out infinite';
-
-            const steps = [
-                "> Scanning for DNS leaks...",
-                "> Checking ISP deep packet inspection...",
-                "> Analyzing metadata headers...",
-                "> Vulnerability found: UNENCRYPTED_TCP_FLOW"
-            ];
-
-            let step = 0;
-            const interval = setInterval(() => {
-                output.innerHTML = steps[step];
-                step++;
-                if (step >= steps.length) {
-                    clearInterval(interval);
-                    finishScan();
+        // Intersection Observer for Progress Bars
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.dataset.width;
                 }
-            }, 1000);
+            });
+        }, { threshold: 0.5 });
 
-            function finishScan() {
-                setTimeout(() => {
-                    line.classList.add('hidden');
-                    btn.innerHTML = '<i class="fas fa-shield-check mr-2"></i> OPTIMIZE NOW';
-                    btn.classList.add('bg-green-500');
-                    
-                    ip.innerText = "84.17.45.1 (PROTECTED)";
-                    ip.classList.replace('text-red-400', 'text-green-400');
-                    
-                    dns.innerText = "PRIVATE_IT_NODE_DNS";
-                    dns.classList.replace('text-red-400', 'text-green-400');
-                    
-                    output.innerHTML = "<span class='text-green-400'>> Audit Complete. Optimization protocol ready to deploy.</span>";
-                }, 500);
-            }
-        }
+        document.querySelectorAll('.node-stat-fill').forEach(bar => {
+            bar.dataset.width = bar.style.width;
+            bar.style.width = '0';
+            observer.observe(bar);
+        });
     </script>
-
-    <style>
-        @keyframes scan {
-            0% { top: 0%; opacity: 0; }
-            50% { opacity: 1; }
-            100% { top: 100%; opacity: 0; }
-        }
-    </style>
-
 </body>
 </html>
